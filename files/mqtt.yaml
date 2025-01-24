@@ -1,0 +1,57 @@
+mqtt:
+  - binary_sensor:
+    - name: "Network UPS AC Input"
+      unique_id: network_ups_ac_input_mqtt
+      state_topic: "devices/networkups/state"
+      payload_on: "on"
+      payload_off: "off"
+      device_class: power
+      value_template: "{{ value_json.ac_input }}"
+      availability:
+        - topic: "devices/networkups/availability"
+          payload_available: "online"
+          payload_not_available: "offline"
+          value_template: "{{ value_json.ac_input }}"
+      expire_after: 30
+
+    - name: "Network UPS DC Output"
+      unique_id: network_ups_dc_output_mqtt
+      state_topic: "devices/networkups/state"
+      payload_on: "on"
+      payload_off: "off"
+      device_class: power
+      value_template: "{{ value_json.dc_output }}"
+      availability:
+        - topic: "devices/networkups/availability"
+          payload_available: "online"
+          payload_not_available: "offline"
+          value_template: "{{ value_json.dc_output }}"
+      expire_after: 30
+
+    - name: "Network UPS Battery is Low"
+      unique_id: network_ups_battery_is_low_mqtt
+      state_topic: "devices/networkups/state"
+      payload_on: "on"
+      payload_off: "off"
+      device_class: battery
+      value_template: "{{ value_json.battery_is_low }}"
+      availability:
+        - topic: "devices/networkups/availability"
+          payload_available: "online"
+          payload_not_available: "offline"
+          value_template: "{{ value_json.battery_is_low }}"
+      expire_after: 30
+
+    - name: "Network UPS Battery is Charging"
+      unique_id: network_ups_battery_is_charging_mqtt
+      state_topic: "devices/networkups/state"
+      payload_on: "on"
+      payload_off: "off"
+      device_class: battery_charging
+      value_template: "{{ value_json.battery_is_charging }}"
+      availability:
+        - topic: "devices/networkups/availability"
+          payload_available: "online"
+          payload_not_available: "offline"
+          value_template: "{{ value_json.battery_is_charging }}"
+      expire_after: 30
